@@ -3,578 +3,325 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI HOT 晨报 — 2026年6月24日</title>
+<title>AI HOT 每日晨报 — 2026年6月24日</title>
 <style>
-  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #0b0e14;
-    --bg-card: #141820;
-    --border: #222832;
-    --text: #dce0e8;
-    --text-dim: #8890a4;
-    --accent: #6c9cf5;
-    --accent-glow: rgba(108,156,245,0.15);
-    --s1: #6c9cf5;
-    --s2: #f59e6c;
-    --s3: #6cf59e;
-    --s4: #f5e26c;
-    --s5: #c56cf5;
-    --hero-top: #0f141f;
-    --hero-bot: #161c28;
+    --bg: #0b0e14; --card-bg: #141820; --border: #222832;
+    --text: #c8ccd4; --text-secondary: #8b8fa3; --text-muted: #5a5e6e;
+    --section-1: #6c9cf5; --section-2: #f59e6c; --section-3: #6cf59e;
+    --section-4: #f5e26c; --section-5: #c56cf5;
+    --radius: 12px; --radius-sm: 8px;
   }
   body {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
-    background: var(--bg); color: var(--text); line-height:1.6;
-    min-height:100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6;
+    min-height: 100vh;
   }
+
   /* Hero */
-  header.hero {
-    background: linear-gradient(170deg, var(--hero-top) 0%, var(--hero-bot) 60%, var(--bg) 100%);
-    padding: 64px 24px 48px; text-align:center; position:relative; overflow:hidden;
+  .hero {
+    text-align: center; padding: 60px 20px 40px;
+    background: linear-gradient(180deg, rgba(108,156,245,0.08) 0%, transparent 100%);
+    border-bottom: 1px solid var(--border);
   }
-  header.hero::before {
-    content:''; position:absolute; top:-40%; left:-20%; width:140%; height:140%;
-    background: radial-gradient(ellipse at 30% 20%, rgba(108,156,245,0.06) 0%, transparent 60%),
-                radial-gradient(ellipse at 70% 60%, rgba(197,108,245,0.04) 0%, transparent 60%);
-    pointer-events:none;
+  .hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+    background: linear-gradient(135deg, #6c9cf5, #c56cf5);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; margin-bottom: 8px;
   }
-  .hero-inner { position:relative; z-index:1; max-width:900px; margin:0 auto; }
-  .hero-badge {
-    display:inline-block; padding:4px 16px; border-radius:20px; font-size:13px; font-weight:600;
-    background:var(--accent-glow); color:var(--accent); margin-bottom:20px; letter-spacing:0.5px;
+  .hero .date { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 4px; }
+  .hero .window { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+  .hero .stats {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 16px;
   }
-  .hero h1 { font-size:clamp(28px,5vw,44px); font-weight:800; letter-spacing:-0.5px; margin-bottom:8px; }
-  .hero .date {
-    font-size:16px; color:var(--text-dim); margin-bottom:32px;
+  .hero .stat {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: 8px 16px; font-size: 0.9rem; display: flex; align-items: center; gap: 6px;
   }
-  .hero .date span { color:var(--text); font-weight:600; }
-  .hero-stats {
-    display:flex; justify-content:center; gap:clamp(12px,3vw,32px); flex-wrap:wrap; margin-bottom:8px;
-  }
-  .stat-item { text-align:center; min-width:80px; }
-  .stat-num { font-size:clamp(28px,4vw,42px); font-weight:800; line-height:1; }
-  .stat-label { font-size:12px; color:var(--text-dim); margin-top:4px; }
-  .stat-total .stat-num { color:var(--accent); }
-  .stat-s1 .stat-num { color:var(--s1); }
-  .stat-s2 .stat-num { color:var(--s2); }
-  .stat-s3 .stat-num { color:var(--s3); }
-  .stat-s4 .stat-num { color:var(--s4); }
-  .stat-s5 .stat-num { color:var(--s5); }
+  .hero .stat-num { font-weight: 700; font-size: 1.1rem; }
+  .hero .stat-total { border-color: #6c9cf5; }
+  .hero .stat-total .stat-num { color: #6c9cf5; }
+  .stat-color-1 .stat-num { color: var(--section-1); }
+  .stat-color-2 .stat-num { color: var(--section-2); }
+  .stat-color-3 .stat-num { color: var(--section-3); }
+  .stat-color-4 .stat-num { color: var(--section-4); }
+  .stat-color-5 .stat-num { color: var(--section-5); }
 
-  /* Anchor Nav */
-  nav.anchor-nav {
-    position:sticky; top:0; z-index:100;
-    background:rgba(20,24,32,0.85); backdrop-filter:blur(16px);
-    border-bottom:1px solid var(--border);
-    padding:0 16px; overflow-x:auto; -webkit-overflow-scrolling:touch;
+  /* Nav */
+  .nav-wrap {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(11,14,20,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
   }
-  nav.anchor-nav ul {
-    display:flex; gap:4px; list-style:none; max-width:900px; margin:0 auto; justify-content:center;
+  .nav {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 4px;
+    padding: 10px 20px; max-width: 1000px; margin: 0 auto;
   }
-  nav.anchor-nav a {
-    display:block; padding:12px 16px; font-size:13px; font-weight:600; color:var(--text-dim);
-    text-decoration:none; border-bottom:2px solid transparent; white-space:nowrap;
-    transition:color .2s, border-color .2s;
+  .nav a {
+    text-decoration: none; color: var(--text-secondary); font-size: 0.85rem;
+    padding: 6px 14px; border-radius: 20px; transition: all 0.2s;
+    white-space: nowrap;
   }
-  nav.anchor-nav a:hover { color:var(--text); }
-  nav.anchor-nav a.active { color:var(--accent); border-bottom-color:var(--accent); }
+  .nav a:hover { background: rgba(255,255,255,0.05); color: #fff; }
+  .nav a.active { background: rgba(108,156,245,0.15); color: #6c9cf5; }
 
-  /* Main Content */
-  main { max-width:1060px; margin:0 auto; padding:40px 20px 64px; }
-  .section { margin-bottom:48px; }
+  /* Content */
+  .content { max-width: 1200px; margin: 0 auto; padding: 30px 20px 40px; }
+  .section { margin-bottom: 40px; }
   .section-header {
-    display:flex; align-items:center; gap:12px; margin-bottom:24px; padding-bottom:12px;
-    border-bottom:1px solid var(--border);
+    display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--border);
   }
-  .section-icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
-  .si-s1 { background:rgba(108,156,245,0.15); color:var(--s1); }
-  .si-s2 { background:rgba(245,158,108,0.15); color:var(--s2); }
-  .si-s3 { background:rgba(108,245,158,0.15); color:var(--s3); }
-  .si-s4 { background:rgba(245,226,108,0.15); color:var(--s4); }
-  .si-s5 { background:rgba(197,108,245,0.15); color:var(--s5); }
-  .section-title { font-size:20px; font-weight:700; }
-  .section-count { font-size:13px; color:var(--text-dim); }
+  .section-header h2 { font-size: 1.3rem; font-weight: 700; }
+  .section-header .badge {
+    font-size: 0.8rem; padding: 3px 10px; border-radius: 20px;
+    background: rgba(255,255,255,0.05); color: var(--text-muted);
+  }
+  .s1 h2 { color: var(--section-1); } .s1 .card-num { background: var(--section-1); }
+  .s2 h2 { color: var(--section-2); } .s2 .card-num { background: var(--section-2); }
+  .s3 h2 { color: var(--section-3); } .s3 .card-num { background: var(--section-3); }
+  .s4 h2 { color: var(--section-4); } .s4 .card-num { background: var(--section-4); }
+  .s5 h2 { color: var(--section-5); } .s5 .card-num { background: var(--section-5); }
 
-  /* Card Grid */
-  .card-grid {
-    display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px;
+  /* Cards */
+  .cards {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
   }
   .card {
-    background:var(--bg-card); border:1px solid var(--border); border-radius:12px;
-    padding:20px; transition:border-color .2s, transform .2s, box-shadow .2s;
-    display:flex; flex-direction:column;
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px;
+    transition: border-color 0.2s, transform 0.15s;
+    display: flex; flex-direction: column;
   }
-  .card:hover {
-    border-color:#334; transform:translateY(-1px);
-    box-shadow:0 4px 24px rgba(0,0,0,0.3);
-  }
-  .card-top { display:flex; align-items:flex-start; gap:12px; margin-bottom:12px; }
+  .card:hover { border-color: #3a3f4a; transform: translateY(-2px); }
+  .card-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 10px; }
   .card-num {
-    flex-shrink:0; width:28px; height:28px; border-radius:6px;
-    display:flex; align-items:center; justify-content:center;
-    font-size:12px; font-weight:700; color:#fff;
+    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700; color: #fff; margin-top: 2px;
   }
-  .num-s1 { background:var(--s1); }
-  .num-s2 { background:var(--s2); }
-  .num-s3 { background:var(--s3); }
-  .num-s4 { background:var(--s4); }
-  .num-s5 { background:var(--s5); }
-  .card-title {
-    font-size:15px; font-weight:700; line-height:1.4; color:var(--text);
-    flex:1;
-  }
-  .card-meta { display:flex; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+  .card-title { font-size: 0.95rem; font-weight: 600; color: #e0e3ea; line-height: 1.5; }
   .card-source {
-    display:inline-block; padding:2px 10px; border-radius:10px; font-size:11px; font-weight:600;
-    background:rgba(255,255,255,0.05); color:var(--text-dim);
+    display: inline-block; font-size: 0.7rem; color: var(--text-muted);
+    background: rgba(255,255,255,0.04); padding: 3px 10px;
+    border-radius: 20px; margin: 8px 0; width: fit-content;
   }
-  .card-summary { font-size:13px; color:var(--text-dim); line-height:1.6; margin-bottom:12px; flex:1; }
+  .card-summary { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; flex: 1; margin-bottom: 12px; }
   .card-link {
-    display:inline-flex; align-items:center; gap:4px; font-size:12px; font-weight:600;
-    color:var(--accent); text-decoration:none; align-self:flex-start;
-    transition:color .2s;
+    text-decoration: none; color: var(--text-muted); font-size: 0.78rem;
+    display: inline-flex; align-items: center; gap: 4px; margin-top: auto;
+    transition: color 0.2s;
   }
-  .card-link:hover { color:#90b8ff; }
-  .card-link svg { width:12px; height:12px; }
+  .card-link:hover { color: var(--section-1); }
+  .card-link svg { width: 14px; height: 14px; opacity: 0.6; }
 
   /* Footer */
-  footer {
-    max-width:1060px; margin:0 auto; padding:32px 20px 48px;
-    text-align:center; border-top:1px solid var(--border);
+  .footer {
+    text-align: center; padding: 30px 20px; border-top: 1px solid var(--border);
+    color: var(--text-muted); font-size: 0.82rem; line-height: 1.8;
   }
-  footer p { font-size:13px; color:var(--text-dim); }
-  footer a { color:var(--accent); text-decoration:none; }
-  footer a:hover { text-decoration:underline; }
+  .footer a { color: var(--text-secondary); text-decoration: none; }
+  .footer a:hover { color: var(--section-1); }
 
-  /* Responsive */
-  @media (max-width:700px) {
-    header.hero { padding:48px 16px 36px; }
-    .card-grid { grid-template-columns:1fr; }
-    .hero-stats { gap:16px; }
-    nav.anchor-nav ul { justify-content:flex-start; }
+  /* Animation for numbers */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .card { animation: fadeUp 0.4s ease both; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 40px 16px 24px; }
+    .hero .stats { gap: 6px; }
+    .hero .stat { padding: 6px 12px; font-size: 0.8rem; }
+    .cards { grid-template-columns: 1fr; }
+    .nav { justify-content: flex-start; overflow-x: auto; padding: 8px 12px; }
+    .nav a { font-size: 0.78rem; padding: 5px 10px; }
+    .content { padding: 20px 12px 30px; }
   }
 </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge">AI HOT 每日晨报</div>
-    <h1>AI 行业动态一览</h1>
-    <p class="date">数据窗口：2026年6月23日 08:00 — <span>6月24日 08:00</span>（北京时间）</p>
-    <div class="hero-stats">
-      <div class="stat-item stat-total"><div class="stat-num" id="totalNum">25</div><div class="stat-label">精选总数</div></div>
-      <div class="stat-item stat-s1"><div class="stat-num">7</div><div class="stat-label">模型更新</div></div>
-      <div class="stat-item stat-s2"><div class="stat-num">6</div><div class="stat-label">产品发布</div></div>
-      <div class="stat-item stat-s3"><div class="stat-num">5</div><div class="stat-label">行业动态</div></div>
-      <div class="stat-item stat-s4"><div class="stat-num">2</div><div class="stat-label">论文研究</div></div>
-      <div class="stat-item stat-s5"><div class="stat-num">5</div><div class="stat-label">技巧观点</div></div>
-    </div>
-  </div>
-</header>
+<div class="hero">
+  <h1>AI HOT 每日晨报</h1>
+  <div class="date">2026年6月24日</div>
+  <div class="window">数据窗口：6月23日 08:00 — 6月24日 08:00（北京时间）</div>
+  <div class="stats" id="stats"></div>
+</div>
 
-<nav class="anchor-nav" id="nav">
-  <ul>
-    <li><a href="#sec1" data-section="sec1">模型发布/更新</a></li>
-    <li><a href="#sec2" data-section="sec2">产品发布/更新</a></li>
-    <li><a href="#sec3" data-section="sec3">行业动态</a></li>
-    <li><a href="#sec4" data-section="sec4">论文研究</a></li>
-    <li><a href="#sec5" data-section="sec5">技巧与观点</a></li>
-  </ul>
-</nav>
+<div class="nav-wrap">
+  <nav class="nav" id="nav"></nav>
+</div>
 
-<main>
+<div class="content" id="content"></div>
 
-<!-- Section 1: 模型发布/更新 — 7 items -->
-<section class="section" id="sec1">
-  <div class="section-header">
-    <div class="section-icon si-s1">🧠</div>
-    <h2 class="section-title">模型发布/更新</h2>
-    <span class="section-count">共 7 条</span>
-  </div>
-  <div class="card-grid">
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s1">01</span>
-        <h3 class="card-title">FastWan-QAD：单卡5090上1.8秒生成5秒视频</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">X：Sky Computing Lab</span></div>
-      <p class="card-summary">基于FastVideo量化感知蒸馏方案，单卡5090仅需1.8秒生成5秒480P视频，模型与代码已开源。</p>
-      <a class="card-link" href="https://x.com/haoailab/status/2069493820732170695" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s1">02</span>
-        <h3 class="card-title">京东全栈开源JoyAI-VL-Interaction：从"一问一答"走向"边看边说"</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">公众号：京东JoyAI</span></div>
-      <p class="card-summary">全球首个全栈交互模型，可主动观察视频流并实时响应，盲评胜率超77%，监控预警达100%胜率。</p>
-      <a class="card-link" href="https://mp.weixin.qq.com/s/IY6XGp4k6VgD9ZPH6YprCA" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s1">03</span>
-        <h3 class="card-title">网易有道发布Confucius4-TTS：14语种无口音语音克隆开源模型</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">IT之家</span></div>
-      <p class="card-summary">业内首个14语种跨语种TTS，3秒音频即可零样本克隆，相似度超85%，已全量开源54GB资源包。</p>
-      <a class="card-link" href="https://www.ithome.com/0/967/636.htm" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s1">04</span>
-        <h3 class="card-title">Krea 2 技术报告正式发布</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">X：Krea AI</span></div>
-      <p class="card-summary">深入解析Krea 2所用数据、架构及训练技巧，详细技术报告已公开发布。</p>
-      <a class="card-link" href="https://x.com/krea_ai/status/2069473417804591191" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s1">05</span>
-        <h3 class="card-title">豆包音频生成模型1.0发布，重新定义AI音频创作</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">公众号：火山引擎</span></div>
-      <p class="card-summary">支持单条Prompt编排多角色对白与环境音，一次支持2分钟创作，已开启API邀测。</p>
-      <a class="card-link" href="https://mp.weixin.qq.com/s/iL0uyUjOMUEfudeuDP6wQQ" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s1">06</span>
-        <h3 class="card-title">Mistral OCR 4</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">Mistral AI</span></div>
-      <p class="card-summary">新增边界框、块分类与逐词置信度，支持170种语言，OlmOCRBench得分85.20，可单容器部署。</p>
-      <a class="card-link" href="https://mistral.ai/news/ocr-4" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s1">07</span>
-        <h3 class="card-title">Seed2.1正式发布，深入AI生产力</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">字节 Seed</span></div>
-      <p class="card-summary">面向真实生产力场景，Agent能力与多模态理解全面升级，已在豆包、TRAE上线。</p>
-      <a class="card-link" href="https://seed.bytedance.com/zh/blog/seed2-1-%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83-%E6%B7%B1%E5%85%A5-ai-%E7%94%9F%E4%BA%A7%E5%8A%9B" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Section 2: 产品发布/更新 — 6 items -->
-<section class="section" id="sec2">
-  <div class="section-header">
-    <div class="section-icon si-s2">🚀</div>
-    <h2 class="section-title">产品发布/更新</h2>
-    <span class="section-count">共 6 条</span>
-  </div>
-  <div class="card-grid">
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s2">08</span>
-        <h3 class="card-title">IBM开源CUGA：轻量级智能体框架，提供二十余个单文件示例</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">Hugging Face Blog</span></div>
-      <p class="card-summary">内置计划-执行-反思循环，AppWorld与WebArena排名第一，支持三种推理模式与多提供商切换。</p>
-      <a class="card-link" href="https://huggingface.co/blog/ibm-research/cuga-apps" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s2">09</span>
-        <h3 class="card-title">Runway推出Seedance 4K等三款新模型</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">X：Runway</span></div>
-      <p class="card-summary">Seedance 4K、Seedance Mini、Kling 3.0 Turbo三款新模型齐发，首三月七折优惠。</p>
-      <a class="card-link" href="https://x.com/runwayml/status/2069535148450705517" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s2">10</span>
-        <h3 class="card-title">百度开源Unlimited OCR：单次长时域解析</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">GitHub: baidu/Unlimited-OCR</span></div>
-      <p class="card-summary">实现单次长时域解析的OCR项目，一次性处理长时间跨度任务，已在GitHub开源。</p>
-      <a class="card-link" href="https://github.com/baidu/Unlimited-OCR" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s2">11</span>
-        <h3 class="card-title">国内首个高考志愿AI测评出炉，千问多项表现超过资深咨询师</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">公众号：千问APP</span></div>
-      <p class="card-summary">四大模块测试44道事实题全对，对比53位咨询师表现更稳定，覆盖约3000院校与2000专业。</p>
-      <a class="card-link" href="https://mp.weixin.qq.com/s/oGHVP4MgGS1rbmT8s8St8Q" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s2">12</span>
-        <h3 class="card-title">Anthropic推出Claude Tag：在Slack中通过@Claude协作</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">Anthropic Newsroom</span></div>
-      <p class="card-summary">支持多用户异步协作，可自主推进项目数小时，面向Enterprise和Team客户的beta版已上线。</p>
-      <a class="card-link" href="https://www.anthropic.com/news/introducing-claude-tag" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s2">13</span>
-        <h3 class="card-title">Claude Code v2.1.187发布</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">Claude Code GitHub</span></div>
-      <p class="card-summary">新增沙箱凭证保护与组织模型限制，修复远程MCP阻塞、粘贴乱码等多项问题。</p>
-      <a class="card-link" href="https://github.com/anthropics/claude-code/releases/tag/v2.1.187" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Section 3: 行业动态 — 5 items -->
-<section class="section" id="sec3">
-  <div class="section-header">
-    <div class="section-icon si-s3">📊</div>
-    <h2 class="section-title">行业动态</h2>
-    <span class="section-count">共 5 条</span>
-  </div>
-  <div class="card-grid">
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s3">14</span>
-        <h3 class="card-title">Oracle因AI应用裁员21000人，债务驱动云基础设施投资</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">Ars Technica</span></div>
-      <p class="card-summary">员工降12.9%，重组成本18亿美元，计划筹资500亿扩建OCI，服务OpenAI、xAI等客户。</p>
-      <a class="card-link" href="https://arstechnica.com/ai/2026/06/oracles-21000-layoffs-help-drive-its-debt-fueled-ai-investments" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s3">15</span>
-        <h3 class="card-title">五眼联盟警告：AI网络威胁数月内将影响普通用户</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">Artificial Intelligence News</span></div>
-      <p class="card-summary">AI模型将降低攻击门槛，自动化智能体可全天候扫描漏洞，建议开启多因素认证。</p>
-      <a class="card-link" href="https://www.artificialintelligence-news.com/news/five-eyes-warning-ai-cyber-threats" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s3">16</span>
-        <h3 class="card-title">GitHub联合开源联盟呼吁修改加州AI透明度法案以保护开源</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">GitHub Blog</span></div>
-      <p class="card-summary">联合Black Forest Labs等呼吁修正撤销开源许可条款，建议参考欧盟AI法案实践。</p>
-      <a class="card-link" href="https://github.blog/news-insights/policy-news-and-insights/github-joins-coalition-advocating-for-fixes-to-california-ai-transparency-act-to-protect-open-source" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s3">17</span>
-        <h3 class="card-title">OpenAI助力Appia Foundation推动先进AI共享标准建设</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">OpenAI 官网</span></div>
-      <p class="card-summary">通过Appia Foundation推动先进AI共享标准，涵盖评估框架、安全实践与全球合作。</p>
-      <a class="card-link" href="https://openai.com/index/helping-build-shared-standards-for-advanced-ai" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s3">18</span>
-        <h3 class="card-title">Omio如何构建对话式旅行的未来</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">OpenAI 官网</span></div>
-      <p class="card-summary">利用OpenAI技术打造对话式旅行体验，加速产品开发，推动向AI原生公司转型。</p>
-      <a class="card-link" href="https://openai.com/index/omio" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Section 4: 论文研究 — 2 items -->
-<section class="section" id="sec4">
-  <div class="section-header">
-    <div class="section-icon si-s4">📄</div>
-    <h2 class="section-title">论文研究</h2>
-    <span class="section-count">共 2 条</span>
-  </div>
-  <div class="card-grid">
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s4">19</span>
-        <h3 class="card-title">AI招聘工具存在种族偏见和系统性排斥</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">Stanford HAI</span></div>
-      <p class="card-summary">覆盖340万人的研究发现26%黑人申请者遭系统性排斥，"算法单一文化"加剧歧视，呼吁独立监管。</p>
-      <a class="card-link" href="https://hai.stanford.edu/news/ai-hiring-tools-can-yield-racial-bias-and-systemic-rejection" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s4">20</span>
-        <h3 class="card-title">九位评委，两个有效投票：相关错误削弱LLM评审面板</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">Apple ML Research</span></div>
-      <p class="card-summary">9个LLM评委仅提供约2个独立投票信息量，面板准确率低8-22个百分点，瓶颈在评委相关性。</p>
-      <a class="card-link" href="https://machinelearning.apple.com/research/correlated-llm-evaluation-panels" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Section 5: 技巧与观点 — 5 items -->
-<section class="section" id="sec5">
-  <div class="section-header">
-    <div class="section-icon si-s5">💡</div>
-    <h2 class="section-title">技巧与观点</h2>
-    <span class="section-count">共 5 条</span>
-  </div>
-  <div class="card-grid">
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s5">21</span>
-        <h3 class="card-title">huggingface_hub实现每周发布：AI、开源工具、人工审核闭环</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">Hugging Face Blog</span></div>
-      <p class="card-summary">利用AI起草发布说明，人工保留最终审核权，全部由单个GitHub Actions工作流自动化完成。</p>
-      <a class="card-link" href="https://huggingface.co/blog/huggingface-hub-release-ci" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s5">22</span>
-        <h3 class="card-title">在Transformers.js中实验跨源存储API</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">Hugging Face Blog</span></div>
-      <p class="card-summary">不同来源Web应用重复下载相同模型资源，单次demo产生177MB冗余，提案API可共享缓存。</p>
-      <a class="card-link" href="https://huggingface.co/blog/cross-origin-storage" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s5">23</span>
-        <h3 class="card-title">Meta如何为AI眼镜设计超窄钢壳电池</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">Meta Engineering Blog</span></div>
-      <p class="card-summary">宽度仅7mm的钢壳电池，Gen2容量提升至210mAh，续航翻倍来自软硬件系统级效率优化。</p>
-      <a class="card-link" href="https://engineering.fb.com/2026/06/23/production-engineering/how-meta-built-ultra-narrow-batteries-for-ai-glasses-meta-tech-podcast" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s5">24</span>
-        <h3 class="card-title">Claude Tag的Agent Identity访问模型</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">Claude Blog</span></div>
-      <p class="card-summary">Claude以独立身份在共享频道工作，私有频道记忆不跨频道流转，简化多玩家场景权限管理。</p>
-      <a class="card-link" href="https://claude.com/blog/agent-identity-access-model" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <span class="card-num num-s5">25</span>
-        <h3 class="card-title">GPT-5帮助免疫学家Derya Unutmaz解开三年未解之谜</h3>
-      </div>
-      <div class="card-meta"><span class="card-source">OpenAI 官网</span></div>
-      <p class="card-summary">GPT-5 Pro揭示T细胞行为新见解，这一突破可能为癌症和自身免疫疾病研究提供支持。</p>
-      <a class="card-link" href="https://openai.com/index/gpt-5-immunology-mystery" target="_blank" rel="noopener noreferrer">
-        阅读原文 <svg viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H4m7 0v7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <p>本晨报共收录 <strong>25</strong> 条 AI 行业精选动态</p>
-  <p style="margin-top:8px;">数据来源：<a href="https://aihot.virxact.com" target="_blank" rel="noopener noreferrer">AI HOT (aihot.virxact.com)</a> · 生成时间：2026年6月24日 08:00（北京时间）</p>
+<footer class="footer">
+  <div>共收录 <strong id="footer-total">25</strong> 条 AI 行业精选资讯</div>
+  <div>数据来源：<a href="https://aihot.virxact.com" target="_blank" rel="noopener noreferrer">AI HOT (aihot.virxact.com)</a></div>
+  <div>生成时间：<span id="gen-time">2026年6月24日 10:41</span>（北京时间）</div>
 </footer>
 
 <script>
-(function(){
-  const nav = document.getElementById('nav');
-  const links = nav.querySelectorAll('a');
-  const sections = [];
-  links.forEach(a => {
-    const id = a.getAttribute('data-section');
-    const el = document.getElementById(id);
-    if(el) sections.push({link:a, el:el, id:id});
+const SECTIONS = [
+  {
+    id: 'models', label: '模型发布/更新', color: '#6c9cf5', cssClass: 's1',
+    items: [
+      {title:'FastWan-QAD：单卡5090上1.8秒生成5秒视频',source:'X：Sky Computing Lab (@haoailab)',url:'https://x.com/haoailab/status/2069493820732170695',summary:'单张RTX 5090上1.8秒生成5秒480P视频，模型、代码及博客已开源。'},
+      {title:'京东全栈开源JoyAI-VL-Interaction，从"一问一答"走向"边看边说"',source:'公众号：京东JoyAI',url:'https://mp.weixin.qq.com/s/IY6XGp4k6VgD9ZPH6YprCA',summary:'全球首个全栈交互模型，持续观察视频流并实时响应，与豆包对比胜率77.6%。'},
+      {title:'网易有道发布 Confucius4-TTS：14 语种跨语种无口音语音克隆开源模型',source:'IT之家（RSS）',url:'https://www.ithome.com/0/967/636.htm',summary:'支持14语种跨语种无口音语音克隆，3秒音频即可零样本克隆，已全量开源。'},
+      {title:'Krea 2 技术报告正式发布',source:'X：Krea AI (@krea_ai)',url:'https://x.com/krea_ai/status/2069473417804591191',summary:'深入解析Krea 2所用数据、架构及训练技巧的完整技术报告。'},
+      {title:'豆包音频生成模型1.0发布，重新定义AI音频创作',source:'公众号：火山引擎',url:'https://mp.weixin.qq.com/s/iL0uyUjOMUEfudeuDP6wQQ',summary:'文本与音频参考生成，编排多角色对白情绪背景音乐，支持2分钟创作。'},
+      {title:'Mistral OCR 4',source:'Mistral AI：News（网页）',url:'https://mistral.ai/news/ocr-4',summary:'新增边界框、块分类及逐页置信度，支持170种语言，可单容器自托管部署。'},
+      {title:'Seed2.1 正式发布，深入 AI 生产力',source:'字节 Seed：Research Feed',url:'https://seed.bytedance.com/zh/blog/seed2-1-%E6%AD%A3%E5%BC%8F%E5%8F%91%E5%B8%83-%E6%B7%B1%E5%85%A5-ai-%E7%94%9F%E4%BA%A7%E5%8A%9B',summary:'面向真实生产力场景的智能体系列，强化Agent、代码工程与多模态能力。'}
+    ]
+  },
+  {
+    id: 'products', label: '产品发布/更新', color: '#f59e6c', cssClass: 's2',
+    items: [
+      {title:'IBM 开源 CUGA：轻量级智能体框架',source:'Hugging Face：Blog（RSS）',url:'https://huggingface.co/blog/ibm-research/cuga-apps',summary:'轻量级智能体框架，内置计划-执行-反思循环，兼容OpenAPI、MCP等多种工具。'},
+      {title:'Runway推出Seedance 4K等三款新模型',source:'X：Runway (@runwayml)',url:'https://x.com/runwayml/status/2069535148450705517',summary:'Seedance 4K、Seedance Mini、Kling 3.0 Turbo三款新模型同时推出。'},
+      {title:'无限制OCR：单次长时域解析',source:'Hacker News 热门',url:'https://github.com/baidu/Unlimited-OCR',summary:'百度开源单次长时域OCR解析，一次性处理长时间跨度的OCR任务。'},
+      {title:'国内首个高考志愿AI测评出炉，千问多项表现超过资深咨询师',source:'公众号：千问APP（阿里）',url:'https://mp.weixin.qq.com/s/oGHVP4MgGS1rbmT8s8St8Q',summary:'千问高考志愿Agent测评，事实题全对，专家匿名对比58次倾向千问。'},
+      {title:'Anthropic 推出 Claude Tag：在 Slack 中通过 @Claude 协作',source:'Anthropic：Newsroom（网页）',url:'https://www.anthropic.com/news/introducing-claude-tag',summary:'Slack频道中@Claude协作，记住上下文，支持异步自主推进项目数小时。'},
+      {title:'Claude Code v2.1.187 发布',source:'Claude Code：GitHub Releases（RSS）',url:'https://github.com/anthropics/claude-code/releases/tag/v2.1.187',summary:'新增沙箱凭证保护设置，模型选择器支持组织限制，修复远程MCP阻塞等问题。'}
+    ]
+  },
+  {
+    id: 'industry', label: '行业动态', color: '#6cf59e', cssClass: 's3',
+    items: [
+      {title:'Oracle因AI应用裁员21000人，债务驱动云基础设施投资',source:'Ars Technica：AI（RSS）',url:'https://arstechnica.com/ai/2026/06/oracles-21000-layoffs-help-drive-its-debt-fueled-ai-investments',summary:'Oracle裁员21000人，计划筹资500亿美元扩建OCI，服务OpenAI、xAI等客户。'},
+      {title:'五眼联盟警告：AI网络威胁数月内将影响普通用户',source:'Artificial Intelligence News（RSS）',url:'https://www.artificialintelligence-news.com/news/five-eyes-warning-ai-cyber-threats',summary:'五眼联盟警告AI模型将降低攻击门槛，超个性化钓鱼诈骗已在亚太蔓延。'},
+      {title:'GitHub联合开源联盟呼吁修改加州AI透明度法案以保护开源',source:'GitHub Blog',url:'https://github.blog/news-insights/policy-news-and-insights/github-joins-coalition-advocating-for-fixes-to-california-ai-transparency-act-to-protect-open-source',summary:'GitHub等呼吁修改SB 942草案中撤销开源许可证的条款，以保护开源生态。'},
+      {title:'OpenAI 助力 Appia Foundation 推动先进 AI 共享标准建设',source:'OpenAI：官网动态',url:'https://openai.com/index/helping-build-shared-standards-for-advanced-ai',summary:'OpenAI支持Appia Foundation制定AI评估框架、安全实践与全球合作标准。'},
+      {title:'Omio 如何构建对话式旅行的未来',source:'OpenAI：官网动态',url:'https://openai.com/index/omio',summary:'Omio利用OpenAI技术构建对话式旅行体验，加速向AI原生公司转型。'}
+    ]
+  },
+  {
+    id: 'papers', label: '论文研究', color: '#f5e26c', cssClass: 's4',
+    items: [
+      {title:'AI招聘工具存在种族偏见和系统性排斥',source:'Hacker News 热门',url:'https://hai.stanford.edu/news/ai-hiring-tools-can-yield-racial-bias-and-systemic-rejection',summary:'340万人研究发现AI招聘存在种族偏见，26%黑人申请者遭算法系统性排斥。'},
+      {title:'九位评委，两个有效投票：相关错误削弱LLM评审面板',source:'Apple Machine Learning Research（RSS）',url:'https://machinelearning.apple.com/research/correlated-llm-evaluation-panels',summary:'9个LLM评委仅提供约2个独立投票信息量，单一最佳模型已匹敌整个面板。'}
+    ]
+  },
+  {
+    id: 'tips', label: '技巧与观点', color: '#c56cf5', cssClass: 's5',
+    items: [
+      {title:'huggingface_hub 实现每周发布：AI、开源工具、人工审核闭环',source:'Hugging Face：Blog（RSS）',url:'https://huggingface.co/blog/huggingface-hub-release-ci',summary:'发布周期缩短至每周，由GitHub Actions自动完成，保留人类最终审核权。'},
+      {title:'在 Transformers.js 中实验提议的跨源存储 API',source:'Hugging Face：Blog（RSS）',url:'https://huggingface.co/blog/cross-origin-storage',summary:'跨源存储API提案让不同Web应用共享缓存模型资源，减少冗余下载。'},
+      {title:'Meta 如何为 AI 眼镜设计超窄钢壳电池',source:'Meta Engineering Blog（RSS）',url:'https://engineering.fb.com/2026/06/23/production-engineering/how-meta-built-ultra-narrow-batteries-for-ai-glasses-meta-tech-podcast',summary:'7mm超窄钢壳电池，容量160mAh→210mAh，续航翻倍来自系统级效率优化。'},
+      {title:'Claude Tag 的 Agent Identity 访问模型',source:'Claude：Blog（网页）',url:'https://claude.com/blog/agent-identity-access-model',summary:'Agent Identity让Claude在共享频道以独立身份工作，频道级权限隔离。'},
+      {title:'GPT-5 帮助免疫学家 Derya Unutmaz 解开三年未解之谜',source:'OpenAI：官网动态',url:'https://openai.com/index/gpt-5-immunology-mystery',summary:'GPT-5 Pro帮助免疫学家解开三年T细胞谜团，助力癌症与自身免疫研究。'}
+    ]
+  }
+];
+
+// Compute totals
+const counts = SECTIONS.map(s => s.items.length);
+const total = counts.reduce((a, b) => a + b, 0);
+
+// Render stats
+const statsDiv = document.getElementById('stats');
+const statLabels = ['总精选', '模型发布/更新', '产品发布/更新', '行业动态', '论文研究', '技巧与观点'];
+const statClasses = ['stat-total', 'stat-color-1', 'stat-color-2', 'stat-color-3', 'stat-color-4', 'stat-color-5'];
+const statNums = [total, ...counts];
+statsDiv.innerHTML = statLabels.map((l, i) =>
+  `<div class="stat ${statClasses[i]}"><span>${l}</span><span class="stat-num" data-target="${statNums[i]}">0</span></div>`
+).join('');
+
+// Render nav
+const navDiv = document.getElementById('nav');
+navDiv.innerHTML = SECTIONS.map(s =>
+  `<a href="#${s.id}">${s.label}</a>`
+).join('');
+
+// Render sections & cards
+const contentDiv = document.getElementById('content');
+let globalIndex = 0;
+
+SECTIONS.forEach((section) => {
+  const secDiv = document.createElement('div');
+  secDiv.className = `section ${section.cssClass}`;
+  secDiv.id = section.id;
+
+  secDiv.innerHTML = `
+    <div class="section-header">
+      <h2>${section.label}</h2>
+      <span class="badge">${section.items.length} 条</span>
+    </div>
+    <div class="cards"></div>
+  `;
+
+  const cardsDiv = secDiv.querySelector('.cards');
+
+  section.items.forEach((item, i) => {
+    globalIndex++;
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.animationDelay = `${globalIndex * 0.03}s`;
+    card.innerHTML = `
+      <div class="card-header">
+        <span class="card-num">${String(globalIndex).padStart(2, '0')}</span>
+        <span class="card-title">${item.title}</span>
+      </div>
+      <span class="card-source">${item.source}</span>
+      <p class="card-summary">${item.summary}</p>
+      <a class="card-link" href="${item.url}" target="_blank" rel="noopener noreferrer">
+        阅读原文
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
+    `;
+    cardsDiv.appendChild(card);
   });
 
-  const observer = new IntersectionObserver(entries => {
-    let activeId = null;
-    let minTop = Infinity;
-    entries.forEach(e => {
-      if(e.isIntersecting && e.boundingClientRect.top < minTop){
-        minTop = e.boundingClientRect.top;
-        activeId = e.target.id;
-      }
-    });
-    if(activeId){
-      links.forEach(a => a.classList.remove('active'));
-      const target = nav.querySelector('[data-section="'+activeId+'"]');
-      if(target) target.classList.add('active');
-    }
-  }, { rootMargin: '-80px 0px -60% 0px' });
+  contentDiv.appendChild(secDiv);
+});
 
-  sections.forEach(s => observer.observe(s.el));
+// Footer total
+document.getElementById('footer-total').textContent = total;
+document.getElementById('gen-time').textContent = '2026年6月24日 10:41（北京时间）';
 
-  // Smooth scroll for anchor clicks
-  links.forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const el = document.getElementById(a.getAttribute('data-section'));
-      if(el) el.scrollIntoView({ behavior:'smooth', block:'start' });
-    });
-  });
-
-  // Animate numbers on load
-  const statNums = document.querySelectorAll('.stat-num');
-  statNums.forEach(el => {
-    const target = parseInt(el.textContent,10);
-    if(isNaN(target)) return;
+// Number animation
+function animateNumbers() {
+  document.querySelectorAll('.stat-num[data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    if (el._animated) return;
+    el._animated = true;
     let current = 0;
     const duration = 800;
     const step = Math.max(1, Math.ceil(target / (duration / 16)));
     const timer = setInterval(() => {
       current = Math.min(current + step, target);
       el.textContent = current;
-      if(current >= target) clearInterval(timer);
+      if (current >= target) clearInterval(timer);
     }, 16);
   });
-})();
+}
+animateNumbers();
+
+// IntersectionObserver for sticky nav highlight
+const navLinks = document.querySelectorAll('.nav a');
+const sectionEls = SECTIONS.map(s => document.getElementById(s.id));
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-80px 0px -60% 0px' });
+
+sectionEls.forEach(el => observer.observe(el));
 </script>
 
 </body>
